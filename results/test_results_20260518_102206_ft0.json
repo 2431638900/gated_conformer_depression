@@ -1,0 +1,24 @@
+{
+  "timestamp": "20260518_102206",
+  "num_samples": 984,
+  "metrics": {
+    "accuracy": 94.91869918699187,
+    "balanced_accuracy": 93.69950988676695,
+    "precision": 0.9292929292929293,
+    "recall": 0.9049180327868852,
+    "f1": 0.9169435215946844,
+    "confusion_matrix": [
+      [
+        658,
+        21
+      ],
+      [
+        29,
+        276
+      ]
+    ],
+    "auc": 0.9874357179072407,
+    "f1_at_05": 0.9169435215946844
+  },
+  "predictions_file": "/mnt/ssd_nvme_4TB/Graduation Project2026/conformer_depression_v2/logs/test_predictions_20260518_102206_ft0.csv"
+}

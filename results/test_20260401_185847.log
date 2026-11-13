@@ -1,0 +1,54 @@
+2026-04-01 18:58:47 - test - INFO - ============================================================
+2026-04-01 18:58:47 - test - INFO - Conformer抑郁检测模型测试
+2026-04-01 18:58:47 - test - INFO - ============================================================
+2026-04-01 18:58:47 - test - INFO - 使用设备: cuda
+2026-04-01 18:58:47 - test - INFO - 
+Platform: Linux
+2026-04-01 18:58:47 - test - INFO - GPU: NVIDIA GeForce RTX 4090
+2026-04-01 18:58:47 - test - INFO - Batch Size: 16
+2026-04-01 18:58:47 - test - INFO - num_workers: 4
+2026-04-01 18:58:47 - test - INFO - 
+加载测试数据...
+2026-04-01 18:58:47 - test - INFO - 📂 使用分层划分数据集: data/augmented_stratified
+2026-04-01 18:58:47 - test - INFO - ✅ 测试集: 984 样本
+2026-04-01 18:58:47 - test - INFO - 
+加载模型...
+2026-04-01 18:58:47 - test - INFO - 🎵 音频配置: 30秒, 480000采样点
+2026-04-01 18:58:47 - test - INFO - 
+📊 模型配置:
+2026-04-01 18:58:47 - test - INFO -   - 预训练模型: hubert (/mnt/ssd_nvme_4TB/Graduation Project2026/pretrained_models/hubert-base-ls960)
+2026-04-01 18:58:47 - test - INFO -   - d_model: 256
+2026-04-01 18:58:47 - test - INFO -   - num_attention_heads: 8
+2026-04-01 18:58:47 - test - INFO -   - feed_forward_dim: 1024
+2026-04-01 18:58:47 - test - INFO -   - dropout: 0.35
+2026-04-01 18:58:47 - test - INFO - ✅ 模型加载成功 (Epoch 38)
+2026-04-01 18:58:47 - test - INFO - ✅ 预训练模型: HUBERT
+2026-04-01 18:58:47 - test - INFO - 验证集最佳F1: 0.9140
+2026-04-01 18:58:47 - test - INFO - 验证集Youden阈值(仅供参考): 0.500
+2026-04-01 18:58:47 - test - INFO - 
+使用决策阈值: 0.500 (固定0.5，不依赖val校准)
+2026-04-01 18:58:47 - test - INFO - 开始测试...
+2026-04-01 18:59:11 - test - INFO - 
+🔍 测试集调试信息:
+2026-04-01 18:59:11 - test - INFO -   - 真实标签分布: 0=679, 1=305
+2026-04-01 18:59:11 - test - INFO -   - 预测标签分布(阈值0.5): 0=700, 1=284
+2026-04-01 18:59:11 - test - INFO -   - 类别1平均概率: 0.3358
+2026-04-01 18:59:11 - test - INFO -   - 类别1最大概率: 0.9036
+2026-04-01 18:59:11 - test - INFO -   - F1@0.5: 0.9134
+2026-04-01 18:59:11 - test - INFO - 
+🔧 使用调整阈值(0.500):
+2026-04-01 18:59:11 - test - INFO -   - 预测标签分布: 0=700, 1=284
+2026-04-01 18:59:11 - test - INFO - 
+测试集结果:
+2026-04-01 18:59:11 - test - INFO - 
+生成测试集混淆矩阵...
+2026-04-01 18:59:11 - test - INFO - ✅ 混淆矩阵已保存: /mnt/ssd_nvme_4TB/Graduation Project2026/conformer_depression_v2/plots/confusion_matrix_test_20260401_185847.png
+2026-04-01 18:59:11 - test - INFO - 
+生成ROC曲线...
+2026-04-01 18:59:11 - test - INFO - ✅ ROC曲线已保存: /mnt/ssd_nvme_4TB/Graduation Project2026/conformer_depression_v2/plots/roc_curve_test_20260401_185847.png
+2026-04-01 18:59:11 - test - INFO - 
+生成预测分布图...
+2026-04-01 18:59:11 - test - INFO - ✅ 预测分布图已保存: /mnt/ssd_nvme_4TB/Graduation Project2026/conformer_depression_v2/plots/prediction_distribution_20260401_185847.png
+2026-04-01 18:59:11 - test - INFO - 测试结果已保存: /mnt/ssd_nvme_4TB/Graduation Project2026/conformer_depression_v2/logs/test_results_20260401_185847.json
+2026-04-01 18:59:11 - test - INFO - 
+✅ 测试完成！

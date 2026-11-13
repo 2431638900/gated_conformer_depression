@@ -1,0 +1,43 @@
+# Data and weights (licensed / too large for git)
+data/daic_woz/
+data/modma/
+data/official_split/
+data/augmented_stratified/
+data/augmented/
+data/processed/
+data/modma_processed/
+data/audio_cache/
+*.wav
+*.mp3
+*.flac
+*.pth
+*.pt
+*.npy
+*.npz
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+
+# Logs and plots generated at runtime
+logs/
+plots/
+*.log
+
+# Keep published experiment records
+!results/
+!results/**
+
+# OS / editor
+.DS_Store
+Thumbs.db
+._*
+.idea/
+.vscode/
