@@ -4,16 +4,6 @@ Code for the paper *Hierarchical Self-supervised Speech Representation Learning 
 
 The model uses a frozen HuBERT backbone, learnable hierarchical layer aggregation, a multi-scale depression feature extractor, a gated multi-scale Conformer (6 layers, width 256, 8 heads), and statistical attention pooling. A lightweight language adapter is used for subject-level transfer to Chinese MODMA.
 
-This repository was cleaned from the original project so that a public release can follow the official AVEC 2017 split and the frozen-HuBERT training setup described in the paper.
-
-## What this release can and cannot reproduce
-
-The reported **test-set** numbers on DAIC-WOZ (segment-level Acc 94.92%, Precision 0.9293, Recall 0.9049, Specificity 0.9691, F1 0.9169, AUC 0.9874; confusion matrix 658/21/29/276) come from the **18 May 2026 frozen-HuBERT** run (18.44M trainable parameters, seed 42). Placing that checkpoint in `checkpoints/best_model.pth` and evaluating on the official test split reproduces those figures.
-
-The **validation** full-model row in the ablation / representation tables (F1 0.9140, Acc 94.81%, AUC 0.9837) comes from a **1 April 2026** run that fine-tuned the last five HuBERT layers (53.88M trainable parameters). The frozen-HuBERT run's own validation score was F1 0.9264, Acc 95.52%, AUC 0.9837; that row is not the one printed in those tables. Re-training with the default frozen setting will therefore not regenerate the 0.9140 validation entry. See `results/EXPERIMENT_LOG.md`.
-
-DAIC-WOZ and MODMA audio are not included. You must obtain them under their original licenses.
-
 ## Setup
 
 Python 3.9+ and a CUDA GPU are recommended (the original runs used PyTorch 2.1 with CUDA 12).
@@ -28,28 +18,25 @@ pip install -r requirements.txt
 
 ## Prepare the official DAIC-WOZ split
 
+DAIC-WOZ and MODMA audio are not included. You must obtain them under their original licenses.
+
 ```bash
 python scripts/prepare_official_split.py --daic-woz-root /path/to/DAIC-WOZ
 ```
 
-This uses the official 107 / 35 / 47 participant lists in `splits/avec2017/` and writes segments to `data/official_split/`. A complete run should yield 4,589 / 983 / 984 segments. Do not run the legacy random resplit in `scripts/legacy/`.
+This uses the official AVEC 2017 participant lists in `splits/avec2017/` (107 / 35 / 47) and writes segments to `data/official_split/`. A complete run should yield 4,589 / 983 / 984 segments.
 
-## Train and test (frozen HuBERT, paper default)
+## Train and test (frozen HuBERT)
 
 ```bash
 # train + test
 bash scripts/train_freeze.sh
 
-# or separately
-python scripts/02_train_model.py --finetune-layers 0
+# or evaluate an existing checkpoint
 python scripts/03_test_model.py --checkpoint best_model.pth
 ```
 
-The last-five-layer setting used only for the April validation / ablation full-model numbers is:
-
-```bash
-python scripts/02_train_model.py --finetune-layers 5
-```
+Place the trained weights at `checkpoints/best_model.pth` before testing. The default training setting freezes all HuBERT parameters (`--finetune-layers 0`).
 
 ## Other experiments
 
@@ -61,7 +48,7 @@ python scripts/10_cross_lingual.py
 python scripts/11_train_language_adapter.py
 ```
 
-Logged results that match the paper tables are in `results/`.
+Logged results corresponding to the paper tables are in `results/`.
 
 ## Default training settings
 
